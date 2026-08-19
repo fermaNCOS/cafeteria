@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cafetería El Grano - Café artesanal, postres y más">
+    <meta name="author" content="Cafetería El Grano">
+    <title>Cafetería El Grano</title>
+    <style>
+        :root {
+            --primary: #4a2c17;
+            --primary-light: #6b3f24;
+            --accent: #d4a04a;
+            --accent-light: #f0d08c;
+            --bg: #faf5ee;
+            --card: #ffffff;
+            --text: #3b2a1a;
+            --muted: #8a7560;
+            --green: #5a7a3a;
+            --red: #c0392b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Georgia", "Times New Roman", serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: #fff;
+            text-align: center;
+            padding: 3rem 1.5rem;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.3rem;
+        }
+
+        header .tagline {
+            color: var(--accent-light);
+            font-size: 1.1rem;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            background: var(--primary-light);
+            text-align: center;
+            padding: 0.8rem;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav a {
+            color: var(--accent-light);
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        section h2 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        section h2::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+
+        .about-text {
+            text-align: center;
+            font-size: 1.05rem;
+            color: var(--muted);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .menu-item {
+            background: var(--card);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--accent);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .menu-item h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .menu-item .price {
+            color: var(--green);
+            font-weight: bold;
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item p {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .promo-list {
+            list-style: none;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .promo-list li {
+            background: var(--card);
+            border-radius: 10px;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .promo-list li .badge {
+            background: var(--red);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            flex-shrink: 0;
+        }
+
+        .promo-list li .promo-text strong {
+            color: var(--primary);
+        }
+
+        .promo-list li .promo-text p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
+        }
+
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-form label {
+            display: block;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+            transition: border-color 0.3s;
+            background: #faf8f5;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .contact-form textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            cursor: pointer;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+
+        .contact-form button:hover {
+            background: var(--primary-light);
+        }
+
+        footer {
+            background: var(--primary);
+            color: var(--accent-light);
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav a {
+                margin: 0 0.5rem;
+                font-size: 0.8rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Cafetería El Grano</h1>
+        <p class="tagline">Sabor artesanal en cada taza</p>
+    </header>
+
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#menu">Menú</a>
+        <a href="#promociones">Promociones</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+
+    <div class="container">
+
+        <section id="inicio">
+            <h2>Bienvenidos</h2>
+            <p class="about-text">
+                En <strong>Cafetería El Grano</strong> seleccionamos los mejores granos de origen nacional
+                para ofrecerte una experiencia única. Relájate, disfruta y deja que el aroma de nuestro
+                café te acompañe.
+            </p>
+        </section>
+
+        <img src="images.jpg" alt="Interior acogedor de la Cafetería El Grano" style="width:100%; max-height:400px; object-fit:cover; border-radius:12px; margin-bottom:2rem;">
+
+        <section id="menu">
+            <h2>Nuestro Menú</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <h3>Espresso Clásico</h3>
+                    <p class="price">Gs. 12.000</p>
+                    <p>Café espresso puro, intenso y aromático.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Cappuccino</h3>
+                    <p class="price">Gs. 18.000</p>
+                    <p>Espresso con espuma de leche cremosa y cacao.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Medialuna</h3>
+                    <p class="price">Gs. 8.000</p>
+                    <p>Medialuna artesanal, recién horneada cada mañana.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Torta Brownie</h3>
+                    <p class="price">Gs. 15.000</p>
+                    <p>Brownie de chocolate belga con nueces.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Jugo Natural</h3>
+                    <p class="price">Gs. 10.000</p>
+                    <p>Jugo de temporada recién exprimido.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="promociones">
+            <h2>Promociones</h2>
+            <ul class="promo-list">
+                <li>
+                    <span class="badge">2x1</span>
+                    <div class="promo-text">
+                        <strong>2x1 en Cafés</strong>
+                        <p>Todos los martes y jueves de 8:00 a 10:00 hs.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="badge">Combo</span>
+                    <div class="promo-text">
+                        <strong>Combo Desayuno</strong>
+                        <p>Café + Medialuna por solo Gs. 17.000.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="badge">Happy Hour</span>
+                    <div class="promo-text">
+                        <strong>Happy Hour Postres</strong>
+                        <p>30% de descuento en tortas de 16:00 a 18:00 hs.</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section id="contacto">
+            <h2>Contáctanos</h2>
+            <form class="contact-form" action="#" method="post">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" placeholder="Escribí tu mensaje..." required></textarea>
+
+                <button type="submit">Enviar mensaje</button>
+            </form>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Cafetería El Grano - Todos los derechos reservados</p>
+    </footer>
+
+</body>
+</html>
